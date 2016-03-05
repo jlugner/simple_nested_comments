@@ -1,0 +1,47 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ */
+
+.snc-comments-container, .snc-nested-comments-container {
+  border-left: 3px solid lightblue;
+}
+
+.snc-nested-comments-container {
+  margin-left: 20px;
+}
+
+.snc-comment {
+  padding: 5px;
+}
+
+.snc-content {
+  font-size: 16px;
+  color: #333;
+  padding:3px;
+}
+.snc-name {
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.snc-answer {
+  color: #999;
+  font-size: 12px;
+  padding: 3px 0 3px 10px;
+}
+
+.snc-comment-form-container {
+  padding: 5px 0;
+}
+
+.snc-only-answer .snc-comment-form-container {
+  margin-left: 20px;
+}

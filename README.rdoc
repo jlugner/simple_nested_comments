@@ -1,0 +1,46 @@
+= Simple Nested Comments
+
+Simple nested comments for Rails and ActiveRecord.
+
+== Quickstart
+
+1. In your gemfile
+gem 'simple_nested_comments'
+
+2. Run the generators and migrations
+rake simple_nested_comments:install:migrations
+rake db:migrate
+
+3. Add to your model that you want people to comment on
+has_nested_comments
+
+4. Mount the engine by adding the following to your routes file
+mount SimpleNestedComments::Engine, at: "/simple_nested_comments"
+
+5. Add the javascript to your application.js
+ //= require simple_nested_comments/simple_nested_comments
+
+6. If you want some default styles add the following to application.css
+ *= require simple_nested_comments/simple_nested_comments
+
+7. In your view where you want to show the comment tree
+<%= display_nested_comments_for(post) %>
+
+== Customization
+If the User model has a method named nested_comments_display_name, the value of it is displayed next to the comment
+
+== Limitations
+
+The gem assumes that there exists an Applicationcontroller and that you can call current_user on that model.
+Assumes the user model is named User
+Anonymous comments are not allowed.
+Assumes the existance of a show action for each model that has_nested_comments
+No authorization check right now, that means anyony can post a comment on any model
+Only browser validations of extra comments
+
+== Bugs
+ancestry needs to be in the mother file
+
+== Inspiration and code copying from
+https://github.com/jackdempsey/acts_as_commentable
+http://www.tweetegy.com/2013/04/create-nested-comments-in-rails-using-ancestry-gem/
