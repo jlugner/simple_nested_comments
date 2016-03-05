@@ -1,7 +1,7 @@
 class CreateNestedComments < ActiveRecord::Migration
   def change
     create_table :nested_comments do |t|
-      t.integer :user_id, null: false
+      t.integer :user_id
       t.text :content, null: false
       t.integer :commentable_id, null: false
       t.string :commentable_type, null: false
