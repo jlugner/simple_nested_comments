@@ -2,11 +2,7 @@
 
 %div{class: parent_id.nil? ? "snc-comments-container" : (nested_comments.empty? ? "snc-only-answer" : "snc-nested-comments-container" )}
   - nested_comments.each do |comment,children|
-    .snc-comment
-      .snc-content= comment.content
-      - user=comment.user
-      -if user.respond_to?(:nested_comments_display_name)
-        .snc-name= "/" + user.nested_comments_display_name
+    = render partial: "nested_comments/comment", object: comment
     = render partial: "nested_comments/nested_comments", object: children, locals: { parent_id: comment.id, commentable: commentable }
   - show_form = parent_id.nil? || nested_comments.length > 0
   = render partial: "nested_comments/form", locals:{ parent_id: parent_id, commentable: commentable, show_form: show_form}

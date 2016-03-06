@@ -7,13 +7,13 @@ class NestedCommentsController < ApplicationController
     @nested_comment.user = current_user
     if @nested_comment.save
       if request.xhr?
-        render json: {success: true}
+        render partial: "nested_comments/comment", object: @nested_comment
       else
-        redirect_to @commentable, notice: "Successfully commented.", status: :created
+        redirect_to @commentable, notice: "Successfully commented."
       end
     else
       if request.xhr?
-        render json: {success: false, errors: @nested_comment.errors}, status: :server_error
+        render html: "<div class='snc-error'>There was an error saving the comment</div>".html_safe
       else
         redirect_to @commentable, alert: "Error adding comment."
       end

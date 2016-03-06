@@ -1,0 +1,5 @@
+.snc-comment
+  .snc-content= comment.content
+  - user=comment.user
+  -if user.respond_to?(:nested_comments_display_name)
+    .snc-name= "/" + user.nested_comments_display_name
