@@ -34,15 +34,13 @@ If the model that has nested_comments has a method nested_commenting_allowed_for
 
 == Limitations
 
-The gem assumes that there exists an Applicationcontroller and that you can call current_user on that model.
+The gem assumes that there exists an Applicationcontroller and that you can call current_user on that model, it also
+assumes this method is available as a view helper.
 Assumes the user model is named User
 Anonymous comments are not allowed.
 
 For fallback non javascript usage
 Assumes the existance of a show action for each model that has_nested_comments
-
-No authorization check right now, that means anyone can post a comment on any model
-Only browser validations of comments having content
 
 == Bugs
 ancestry needs to be in the mother file
