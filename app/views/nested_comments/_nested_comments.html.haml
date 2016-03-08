@@ -4,5 +4,6 @@
   - nested_comments.each do |comment,children|
     = render partial: "nested_comments/comment", object: comment
     = render partial: "nested_comments/nested_comments", object: children, locals: { parent_id: comment.id, commentable: commentable }
-  - show_form = parent_id.nil? || nested_comments.length > 0
-  = render partial: "nested_comments/form", locals:{ parent_id: parent_id, commentable: commentable, show_form: show_form}
+  - if nested_commenting_allowed?(commentable, current_user)
+    - show_form = parent_id.nil? || nested_comments.length > 0
+    = render partial: "nested_comments/form", locals:{ parent_id: parent_id, commentable: commentable, show_form: show_form}

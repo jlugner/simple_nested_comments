@@ -29,6 +29,9 @@ mount SimpleNestedComments::Engine, at: "/simple_nested_comments"
 == Customization
 If the User model has a method named nested_comments_display_name, the value of it is displayed next to the comment
 
+If the model that has nested_comments has a method nested_commenting_allowed_for?(user), then only users that the method
+ returns a truthy statement for will be allowed to comment.
+
 == Limitations
 
 The gem assumes that there exists an Applicationcontroller and that you can call current_user on that model.

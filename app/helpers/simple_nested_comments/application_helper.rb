@@ -9,5 +9,17 @@ module SimpleNestedComments
              locals: {parent_id: nil, commentable: commentable}
 
     end
+
+    def nested_commenting_allowed?(commentable, user)
+      if current_user
+        if commentable.respond_to?(:nested_commenting_allowed_for?)
+          commentable.nested_commenting_allowed_for?(user)
+        else
+          true
+        end
+      else
+        false
+      end
+    end
   end
 end
