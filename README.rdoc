@@ -6,9 +6,10 @@ Simple nested comments for Rails and ActiveRecord.
 
 1. In your gemfile
 gem 'simple_nested_comments'
+gem 'ancestry'
 
 2. Run the generators and migrations
-rake simple_nested_comments:install:migrations
+rake simple_nested_comments_engine:install:migrations
 rake db:migrate
 
 3. Add to your model that you want people to comment on
@@ -24,7 +25,7 @@ mount SimpleNestedComments::Engine, at: "/simple_nested_comments"
  *= require simple_nested_comments/simple_nested_comments
 
 7. In your view where you want to show the comment tree
-<%= display_nested_comments_for(post) %>
+<%= display_nested_comments_for(my_model) %>
 
 == Customization
 If the User model has a method named nested_comments_display_name, the value of it is displayed next to the comment
@@ -43,7 +44,7 @@ For fallback non javascript usage
 Assumes the existance of a show action for each model that has_nested_comments
 
 == Bugs
-ancestry needs to be in the mother file
+ancestry needs to be added to the Gemfile of your application
 
 == Inspiration and code copying from
 https://github.com/jackdempsey/acts_as_commentable
