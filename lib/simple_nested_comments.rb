@@ -35,7 +35,7 @@ module SimpleNestedComments
   module LocalInstanceMethods
     # Helper method to display only root threads, no children/replies
     def root_comments
-      comment_threads.where(parent_id: nil)
+      nested_comments.roots
     end
 
     # Helper method to sort comments by date
