@@ -1,6 +1,6 @@
 - unless show_form
   .snc_click_to_show_comment_form{data:{ "snc-comment-form-container-id" => "snc_comment_form_container_#{parent_id || 'root'}"}}
-    %span.snc-answer= "Answer"
+    %span.snc-answer= t('snc.answer')
 .snc-comment-form-container{id: "snc_comment_form_container_#{parent_id || 'root'}", style: show_form ? '' : 'display:none;'}
   .snc_new_comments
   = form_for NestedComment.new(commentable: commentable, parent_id: parent_id), url: simple_nested_comments_engine.nested_comments_path, remote:true, html: {"data-type" => :html} do |f|
@@ -8,4 +8,4 @@
     = f.hidden_field :commentable_id
     = f.hidden_field :parent_id
     = f.text_field :content, required: true
-    = f.submit "Comment", data: {disable_with: "Sending..."}
+    = f.submit t('snc.comment'), data: {disable_with: t('snc.sending')}
