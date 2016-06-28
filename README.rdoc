@@ -33,6 +33,9 @@ If the User model has a method named nested_comments_display_name, the value of 
 If the model that has nested_comments has a method nested_commenting_allowed_for?(user), then only users that the method
  returns a truthy statement for will be allowed to comment.
 
+If the model that has nested comments has a method after_nested_comment_created, that method is called after a nested
+comment has been created. The argument to the function is the newly created nested comment
+
 == Limitations
 
 The gem assumes that there exists an Applicationcontroller and that you can call current_user on that model, it also

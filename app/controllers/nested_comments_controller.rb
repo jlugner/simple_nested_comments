@@ -15,6 +15,9 @@ class NestedCommentsController < ApplicationController
     @nested_comment = @commentable.nested_comments.build(params[:nested_comment].permit(:content, :parent_id))
     @nested_comment.user = current_user
     if @nested_comment.save
+      if @commentable.respond_to?(:after_nested_comment_created)
+        @commentable.after_nested_comment_created(@nested_comment)
+      end
       if request.xhr?
         render partial: "nested_comments/comment", object: @nested_comment
       else
