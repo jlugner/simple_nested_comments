@@ -23,7 +23,7 @@ $( document ).ready(function(){
 
     $(".new_nested_comment").on("ajax:success", function (e, data, status, xhr) {
         $(this).parent().children(".snc_new_comments").append(xhr.responseText);
-        $(this).find("input[type=text]").first().val('');
+        $(this).find("#nested_comment_content").first().val('');
     }).on("ajax:error", function (e, xhr, status, error) {
         $(this).parent().children(".snc_new_comments").append(xhr.responseText);
     });
