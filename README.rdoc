@@ -12,7 +12,7 @@ gem 'ancestry'
 rake simple_nested_comments_engine:install:migrations
 rake db:migrate
 
-3. Add to your model that you want people to comment on
+3. Add the following method to your model that you want people to comment on
 has_nested_comments
 
 4. Mount the engine by adding the following to your routes file
