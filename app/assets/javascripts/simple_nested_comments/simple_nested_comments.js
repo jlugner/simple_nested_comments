@@ -11,21 +11,55 @@
 // about supported directives.
 //
 
-$( document ).ready(function(){
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".snc_click_to_show_comment_form").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var id = el.dataset.sncCommentFormContainerId;
+      var box = document.getElementById(id);
+      if (!box) {
+        return;
+      }
 
-    // Click on the answer object shows the corresponding form
-    $(".snc_click_to_show_comment_form" ).click(function() {
-        var form_container = $("#" + $(this).data("snc-comment-form-container-id"));
-        form_container.slideDown();
-        // Put focus on comment input
-        form_container.find("input[type=text]").focus();
+      box.style.display = "";
+      var input = box.querySelector('input[type="text"]');
+      if (input) {
+        input.focus();
+      }
     });
+  });
 
-    $(".new_nested_comment").on("ajax:success", function (e, data, status, xhr) {
-        $(this).parent().children(".snc_new_comments").append(xhr.responseText);
-        $(this).find("#nested_comment_content").first().val('');
-    }).on("ajax:error", function (e, xhr, status, error) {
-        $(this).parent().children(".snc_new_comments").append(xhr.responseText);
-    });
+document.addEventListener("ajax:success", function (event) {
+    var target = event.target;
+    if (!target.matches(".new_nested_comment")) {
+        return;
+    }
 
+    var detail = event.detail || [];
+    var data = detail[0]; // HTML string
+    var container = target.parentElement.querySelector(".snc_new_comments");
+    if (container && typeof data === "string") {
+        container.insertAdjacentHTML("beforeend", data);
+    }
+
+    var input = target.querySelector("#nested_comment_content");
+    if (input) {
+        input.value = "";
+    }
+});
+
+document.addEventListener("ajax:error", function (event) {
+    var target = event.target;
+    if (!target.matches(".new_nested_comment")) {
+        return;
+    }
+
+    var detail = event.detail || [];
+    var xhr = detail[2];
+    var data = detail[0];
+    var html = (xhr && xhr.responseText) || (typeof data === "string" ? data : "");
+    var container = target.parentElement.querySelector(".snc_new_comments");
+    if (container && html) {
+        container.insertAdjacentHTML("beforeend", html);
+    }
+  });
 });
